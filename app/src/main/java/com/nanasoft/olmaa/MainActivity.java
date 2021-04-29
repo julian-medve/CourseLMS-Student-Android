@@ -1,7 +1,9 @@
 package com.nanasoft.olmaa;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.AsyncTask;
@@ -9,9 +11,12 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.WindowManager;
 
-import java.util.Set;
+import com.androidnetworking.AndroidNetworking;
+import com.androidnetworking.common.Priority;
+import com.androidnetworking.error.ANError;
+import com.androidnetworking.interfaces.JSONObjectRequestListener;
 
-import static android.provider.ContactsContract.CommonDataKinds.Website.URL;
+import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getName();
@@ -24,6 +29,13 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE,
                 WindowManager.LayoutParams.FLAG_SECURE);
 
+        //Request Internet permission
+        ActivityCompat.requestPermissions(MainActivity.this,
+                new String[]{Manifest.permission.INTERNET},
+                1);
+
+        AndroidNetworking.initialize(getApplicationContext());
+
         setContentView(R.layout.activity_main);
 
         // Get params from the URI
@@ -35,8 +47,27 @@ public class MainActivity extends AppCompatActivity {
         if (data != null) {
             String user = data.getQueryParameter("user");
             String content = data.getQueryParameter("class");
-            String userId = user;
-            String uri = "http://lms.olmaa.net/api/v1/contentWithVideo?userId=" + user + "&contentId=" + content;
+            String uri = "http://lms.olmaa.net/api/v1/contentWithVideo";
+
+            AndroidNetworking.get(uri)
+//                    .addPathParameter("pageNumber", "0")
+                    .addQueryParameter("userId", user)
+                    .addQueryParameter("contentId", content)
+//                    .addHeaders("token", "1234")
+//                    .setTag("test")
+                    .setPriority(Priority.LOW)
+                    .build()
+                    .getAsJSONObject(new JSONObjectRequestListener() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+                            Log.d(TAG, response.toString());
+                        }
+
+                        @Override
+                        public void onError(ANError anError) {
+                            Log.d(TAG, anError.toString());
+                        }
+                    });
         }
     }
 }
