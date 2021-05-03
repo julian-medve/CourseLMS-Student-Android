@@ -75,9 +75,18 @@ public class MainActivity extends AppCompatActivity {
                                 String url = response.getString("url");
 
                                 String htmlContent = "<body style=\"display: flex;  justify-content: center;  align-items: center;\" >";
+
                                 if (provider.contains("Vimeo"))
                                     htmlContent += String.format("<iframe src=\"https://player.vimeo.com/video/%s\" frameborder=\"0\" allow=\"autoplay; fullscreen\" allowfullscreen></iframe>", url);
+                                else if (provider.contains("HTML5") || provider.contains("file"))
+                                    htmlContent += String.format("<video width=\"100%%\" controls playsinline id=\"player\" class=\"html-video-frame\" src=\"%s\" type=\"video/mp4\"></video>", url);
 
+                                htmlContent += String.format("<marquee width=\"100%%\" behavior=\"scroll\" direction=\"right\" scrollamount=\"5\" style=\"top: 20%%; position: absolute; color: gray; font-size: 100px; opacity:0.2;\">%s</marquee>", user);
+                                htmlContent += String.format("<marquee width=\"100%%\" behavior=\"scroll\" direction=\"right\" scrollamount=\"5\" style=\"top: 40%%; position: absolute; color: gray; font-size: 100px; opacity:0.2;\">%s</marquee>", user);
+                                htmlContent += String.format("<marquee width=\"100%%\" behavior=\"scroll\" direction=\"right\" scrollamount=\"5\" style=\"top: 60%%; position: absolute; color: gray; font-size: 100px; opacity:0.2;\">%s</marquee>", user);
+                                htmlContent += String.format("<marquee width=\"100%%\" behavior=\"scroll\" direction=\"right\" scrollamount=\"5\" style=\"top: 80%%; position: absolute; color: gray; font-size: 100px; opacity:0.2;\">%s</marquee>", user);
+                                htmlContent += "</body>";
+                                
                                 webview.setWebViewClient(new WebViewClient());
                                 webview.loadData(htmlContent, "text/html", "UTF-8");
 
