@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">Olmaa</string>
+    <string name="app_name">LMSIQ</string>
+    <string name="title_activity_launch">LaunchActivity</string>
 </resources>
