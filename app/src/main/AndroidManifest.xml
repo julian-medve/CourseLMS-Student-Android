@@ -23,6 +23,7 @@
         </activity>
 
         <activity android:name=".MainActivity"
+            android:screenOrientation="landscape"
             android:configChanges="keyboard|keyboardHidden|orientation|screenLayout|uiMode|screenSize|smallestScreenSize">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />

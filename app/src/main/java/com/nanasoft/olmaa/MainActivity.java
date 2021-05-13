@@ -88,7 +88,7 @@ public class MainActivity extends AppCompatActivity {
 
                                     if (provider.contains("Vimeo")) {
                                         htmlContent +=
-                                                "<iframe src=\"https://player.vimeo.com/video/" + url + "?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=58479\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture\" allowfullscreen style=\"position:absolute;top:0;left:0;width:100%;height:100%;\" title=\"1.mp4\">\n</iframe>\n <script src=\"https://player.vimeo.com/api/player.js\"></script>";
+                                                "<iframe src=\"https://player.vimeo.com/video/" + url + "?badge=0&amp;autopause=0&amp;player_id=0&amp;app_id=213858\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture\" allowfullscreen style=\"position:absolute;top:0;left:0;width:100%;height:100%;\" title=\"1.mp4\">\n</iframe>\n <script src=\"https://player.vimeo.com/api/player.js\"></script>";
                                     } else if (provider.contains("HTML5") || provider.contains("file"))
                                         htmlContent += String.format("<video width=\"100%%\" controls playsinline id=\"player\" class=\"html-video-frame\" src=\"%s\" type=\"video/mp4\"></video>", url);
 
