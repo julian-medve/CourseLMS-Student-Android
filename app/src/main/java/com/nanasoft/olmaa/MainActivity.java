@@ -23,9 +23,12 @@ import com.androidnetworking.interfaces.JSONObjectRequestListener;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import pl.droidsonroids.gif.GifImageView;
+
 public class MainActivity extends AppCompatActivity {
     private static final String TAG = MainActivity.class.getName();
     WebView webView;
+    GifImageView loadingVimeo;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -49,6 +52,7 @@ public class MainActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_main);
         webView = (WebView) findViewById(R.id.webView);
+        loadingVimeo = (GifImageView) findViewById(R.id.vimeoLoading);
 
         if(savedInstanceState != null) {
             webView.restoreState(savedInstanceState);
@@ -100,7 +104,11 @@ public class MainActivity extends AppCompatActivity {
 
 
                                     webView.getSettings().setJavaScriptEnabled(true);
-                                    webView.setWebViewClient(new WebViewClient());
+                                    webView.setWebViewClient(new WebViewClient(){
+                                        public void onPageFinished(WebView view, String url) {
+                                            loadingVimeo.setVisibility(View.INVISIBLE);
+                                        }
+                                    });
                                     webView.loadData(htmlContent, "text/html", "UTF-8");
 
                                 } catch (JSONException e) {

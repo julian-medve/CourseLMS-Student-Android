@@ -6,10 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".LaunchActivity">
 
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:id="@+id/imageSplash"
+        android:src="@drawable/splash">
+    </ImageView>
+
     <WebView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/webView">
+        android:id="@+id/webView"
+        android:visibility="invisible">
     </WebView>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

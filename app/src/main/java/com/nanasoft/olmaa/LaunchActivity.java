@@ -5,14 +5,20 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Looper;
 import android.view.KeyEvent;
 import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.ImageView;
+
+import static java.lang.Thread.sleep;
 
 public class LaunchActivity extends AppCompatActivity {
 
     WebView webView;
+    ImageView imageSplash;
+    final int SPLASH_DURATION = 45000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,6 +26,8 @@ public class LaunchActivity extends AppCompatActivity {
 
         setContentView(R.layout.activity_launch);
         webView = (WebView) findViewById(R.id.webView);
+        imageSplash = (ImageView) findViewById(R.id.imageSplash);
+
         webView.getSettings().setJavaScriptEnabled(true);
 
         hideSystemUI();
@@ -29,6 +37,9 @@ public class LaunchActivity extends AppCompatActivity {
         }
         else
         {
+            imageSplash.setVisibility(View.VISIBLE);
+            webView.setVisibility(View.INVISIBLE);
+
             webView.setWebViewClient(new WebViewClient(){
                 public boolean shouldOverrideUrlLoading(WebView view, String url) {
                     if (url != null && url.startsWith("courselmsvideoplayer://")) {
@@ -38,6 +49,11 @@ public class LaunchActivity extends AppCompatActivity {
                     } else {
                         return false;
                     }
+                }
+
+                public void onPageFinished(WebView view, String url) {
+                    imageSplash.setVisibility(View.INVISIBLE);
+                    webView.setVisibility(View.VISIBLE);
                 }
             });
             webView.getSettings().setDomStorageEnabled(true);
