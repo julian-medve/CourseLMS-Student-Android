@@ -9,5 +9,5 @@
 <img src = "Screenshots/Screenshot_5.png" />
 <img src = "Screenshots/Screenshot_6.png" />
 
-### For Demo APK : [here](https://github.com/tarzan0420/AR-Measure-Mobilinq/blob/main/Demo/LMSIQ.apk)
-### Tutorial : [here](https://github.com/tarzan0420/AR-Measure-Mobilinq/blob/main/Demo/LMSIQ.mp4)
+### For Demo APK : [here](https://github.com/tarzan0420/CourseLMS-Student-Android/blob/main/Demo/LMSIQ.apk)
+### Tutorial : [here](https://github.com/tarzan0420/CourseLMS-Student-Android/blob/main/Demo/LMSIQ.mp4)
